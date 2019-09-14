@@ -35,7 +35,8 @@ window.addEventListener('DOMContentLoaded', () => {
   var dialogOpenBtnElement = document.querySelector('.app__dialog-open');
   var dialogCloseBtnElement = document.querySelector('.app__dialog-close');
   var scanningEle = document.querySelector('.custom-scanner');
-  var textBoxEle = document.querySelector('#result');
+  var resultEle = document.querySelector('.app__dialog-table');
+  // var textBoxEle = document.querySelector('#result');
   var helpTextEle = document.querySelector('.app__help-text');
   var infoSvg = document.querySelector('.app__header-icon svg');
   var videoElement = document.querySelector('video');
@@ -90,12 +91,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     QRReader.scan(result => {
       copiedText = result;
-      textBoxEle.value = result;
-      textBoxEle.select();
       scanningEle.style.display = 'none';
-      if (isURL(result)) {
-        dialogOpenBtnElement.style.display = 'inline-block';
-      }
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('GET', 'http://localhost/getqrcode.php?qr=' + result, true);
+      xhttp.send();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          var reponseDuServeur = this.responseText;
+          resultEle.innerHTML = reponseDuServeur;
+        }
+      };
+
       dialogElement.classList.remove('app__dialog--hide');
       dialogOverlayElement.classList.remove('app__dialog--hide');
       const frame = document.querySelector('#frame');
@@ -106,7 +112,8 @@ window.addEventListener('DOMContentLoaded', () => {
   //Hide dialog
   function hideDialog() {
     copiedText = null;
-    textBoxEle.value = '';
+    // textBoxEle.value = '';
+    resultEle.innerHTML = '';
 
     if (!window.isMediaStreamAPISupported) {
       frame.src = '';
@@ -115,7 +122,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     dialogElement.classList.add('app__dialog--hide');
     dialogOverlayElement.classList.add('app__dialog--hide');
-    scan();
+    scan(); // Ce scan pose un problème quand on lit des images locales ==> double popup
   }
 
   function selectFromPhoto() {
