@@ -93,7 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
       copiedText = result;
       scanningEle.style.display = 'none';
       var xhttp = new XMLHttpRequest();
-      xhttp.open('GET', 'http://localhost/getqrcode.php?qr=' + result, true);
+      xhttp.open('GET', 'https://test-qr-response.real-it.duckdns.org/getqrcode.php?qr=' + result, true);
       xhttp.send();
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
