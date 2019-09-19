@@ -1,0 +1,16 @@
+table, th, td { border: 1px solid black;}
+
+table {
+    margin-left: 15px;
+    border-spacing: 5px;
+    width: 100%;
+}
+
+.app__dialog-table {
+    width: 100%;
+}
+
+.error {
+    margin-left: 15px;
+    color: red;
+}
