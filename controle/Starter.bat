@@ -1,3 +1,3 @@
-cd C:\Users\1740340\Desktop\Projets\QR-CODE
+cd ..
 
 npm run start
