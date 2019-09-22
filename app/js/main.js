@@ -102,6 +102,10 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       };
 
+      setTimeout(function() {
+        hideDialog();
+      }, 3000);
+
       dialogElement.classList.remove('app__dialog--hide');
       dialogOverlayElement.classList.remove('app__dialog--hide');
       const frame = document.querySelector('#frame');
