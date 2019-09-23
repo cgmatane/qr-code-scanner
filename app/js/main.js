@@ -32,8 +32,8 @@ window.addEventListener('DOMContentLoaded', () => {
   var selectPhotoBtn = document.querySelector('.app__select-photos');
   var dialogElement = document.querySelector('.app__dialog');
   var dialogOverlayElement = document.querySelector('.app__dialog-overlay');
-  var dialogOpenBtnElement = document.querySelector('.app__dialog-open');
-  var dialogCloseBtnElement = document.querySelector('.app__dialog-close');
+  // var dialogOpenBtnElement = document.querySelector('.app__dialog-open');
+  // var dialogCloseBtnElement = document.querySelector('.app__dialog-close');
   var scanningEle = document.querySelector('.custom-scanner');
   var resultEle = document.querySelector('.app__dialog-table');
   // var textBoxEle = document.querySelector('#result');
@@ -68,8 +68,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   //Dialog close btn event
-  dialogCloseBtnElement.addEventListener('click', hideDialog, false);
-  dialogOpenBtnElement.addEventListener('click', openInBrowser, false);
+  //dialogCloseBtnElement.addEventListener('click', hideDialog, false);
+  //dialogOpenBtnElement.addEventListener('click', openInBrowser, false);
 
   //To open result in browser
   function openInBrowser() {
@@ -97,8 +97,11 @@ window.addEventListener('DOMContentLoaded', () => {
       xhttp.send();
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-          var reponseDuServeur = this.responseText;
-          resultEle.innerHTML = reponseDuServeur;
+          if (this.responseText.includes('error') || this.responseText.includes('ERREUR')) {
+            resultEle.innerHTML = "<span class='error'>Ce billet est invalide, veuillez réessayer</span>";
+          } else {
+            resultEle.innerHTML = this.responseText;
+          }
         }
       };
 
