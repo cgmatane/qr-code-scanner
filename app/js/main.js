@@ -2,6 +2,7 @@ import QRReader from './vendor/qrscan.js';
 import { snackbar } from './snackbar.js';
 import styles from '../css/styles.css';
 import isURL from 'is-url';
+import image from '../images/logo-stq.png';
 
 //If service worker is installed, show offline usage notification
 if ('serviceWorker' in navigator) {
@@ -98,7 +99,8 @@ window.addEventListener('DOMContentLoaded', () => {
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
           if (this.responseText.includes('error') || this.responseText.includes('ERREUR')) {
-            resultEle.innerHTML = "<span class='error'>Ce billet est invalide, veuillez réessayer</span>";
+            resultEle.innerHTML =
+              "<img id='logo-stq' src='/images/logo-stq.png'><span class='error'>Ce billet est invalide, veuillez réessayer</span>";
           } else {
             resultEle.innerHTML = this.responseText;
           }

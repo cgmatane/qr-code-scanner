@@ -254,7 +254,7 @@ video {
   background-color: #fff;
   width: 290px;
   height: 180px;
-  border-radius: 2px;
+  border-radius: 10px;
   display: flex;
   position: absolute;
   left: 0;
