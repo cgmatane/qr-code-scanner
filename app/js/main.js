@@ -102,7 +102,7 @@ window.addEventListener('DOMContentLoaded', () => {
             resultEle.innerHTML =
               "<img id='logo-stq' src='/images/logo-stq.png'><span class='error'>Ce billet est invalide, veuillez réessayer</span>";
           } else {
-            resultEle.innerHTML = this.responseText;
+            resultEle.innerHTML = "<img id='logo-stq' src='/images/logo-stq.png'><div>Bienvenue à bord de la traverse</div>" + this.responseText;
           }
         }
       };
