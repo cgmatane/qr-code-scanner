@@ -28,6 +28,11 @@ window.addEventListener('DOMContentLoaded', () => {
   window.isMediaStreamAPISupported = navigator && navigator.mediaDevices && 'enumerateDevices' in navigator.mediaDevices;
   window.noCameraPermission = false;
 
+  var config = require('../config.json');
+
+  var popupTimeout = config['timeout'] * 1000; // secondes in millis
+  var popupInfo = config['afficher_infos_client'];
+
   var copiedText = null;
   var frame = null;
   var selectPhotoBtn = document.querySelector('.app__select-photos');
@@ -102,7 +107,12 @@ window.addEventListener('DOMContentLoaded', () => {
             resultEle.innerHTML =
               "<img id='logo-stq' src='/images/logo-stq.png'><span class='error'>Ce billet est invalide, veuillez réessayer</span>";
           } else {
-            resultEle.innerHTML = "<img id='logo-stq' src='/images/logo-stq.png'><div>Bienvenue à bord de la traverse</div>" + this.responseText;
+            var aAfficher = "<img id='logo-stq' src='/images/logo-stq.png'><div>Bienvenue à bord de la traverse</div>";
+            if (popupInfo) {
+              resultEle.innerHTML = aAfficher + this.responseText;
+            } else {
+              resultEle.innerHTML = aAfficher;
+            }
           }
         }
       };
