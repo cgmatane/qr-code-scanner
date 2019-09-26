@@ -1,0 +1,19 @@
+{
+  "passagers" : [{
+    "nom" : "Nom",
+    "prenom" : "Prenom",
+    "date_naissance" : "20-12-1990"
+  }, {
+    "nom" : "Nom2",
+    "prenom" : "Prenom2",
+    "date_naissance" : "02-12-1990"
+  }],
+
+  "vehicule" : {
+    "type_vehicule" : "voiture",
+    "couleur" : "rouge",
+    "immatriculation" : "122-2NH-L",
+    "modele" : "Rio",
+    "marque" : "Kia"
+  }
+}

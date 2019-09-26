@@ -1,0 +1,15 @@
+{
+  "passagers" : [{
+    "nom" : ,
+    "prenom" : ,
+    "date_naissance" :
+  }],
+
+  "vehicule" : {
+    "type_vehicule" :
+    "couleur" :
+    "immatriculation" :
+    "modele" :
+    "marque" :
+  }
+}
