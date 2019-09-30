@@ -1,4 +1,4 @@
 {
-  "timeout": 5,
-  "afficher_infos_client": false
+  "timeout": 15,
+  "afficher_infos_client": true
 }

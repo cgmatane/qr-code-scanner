@@ -99,27 +99,36 @@ window.addEventListener('DOMContentLoaded', () => {
       copiedText = result;
       scanningEle.style.display = 'none';
       var xhttp = new XMLHttpRequest();
-      xhttp.open('GET', 'https://test-qr-response.real-it.duckdns.org/getqrcode.php?qr=' + result, true);
+      xhttp.open('GET', 'https://billetterie.real-it.duckdns.org/requete-qr?qr=' + result, true);
       xhttp.send();
       xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-          if (this.responseText.includes('error') || this.responseText.includes('ERREUR')) {
+          var logo = "<img id='logo-stq' src='/images/logo-stq-640.png' width='80%' height='80%'>";
+          if (this.responseText.length <= 2) {
             resultEle.innerHTML =
-              "<img id='logo-stq' src='/images/logo-stq.png'><span class='error'>Ce billet est invalide, veuillez réessayer</span>";
+              logo + "<div class='alert alert-danger'>" + '<strong>Erreur : Billet invalide </strong> Veuillez réessayer' + '</div>';
           } else {
-            var aAfficher = "<img id='logo-stq' src='/images/logo-stq.png'><div>Bienvenue à bord de la traverse</div>";
+            var aAfficher = logo;
+            var alert = "<div class='alert alert-success'>" + '<strong>Billet valide</strong> Vous pouvez avancer</div>';
             if (popupInfo) {
-              resultEle.innerHTML = aAfficher + this.responseText;
+              var commande = JSON.parse(this.responseText);
+              aAfficher += '<div>' + commande.passagers.length + ' passagers : ' + '</div>';
+              commande.passagers.forEach(function(passager) {
+                aAfficher += '<div>' + passager.nom + ' ' + passager.prenom + '</div>';
+              });
+              aAfficher += alert;
+              resultEle.innerHTML = aAfficher;
             } else {
               resultEle.innerHTML = aAfficher;
             }
           }
+          console.log(this.responseText);
         }
       };
 
       setTimeout(function() {
         hideDialog();
-      }, 3000);
+      }, popupTimeout);
 
       dialogElement.classList.remove('app__dialog--hide');
       dialogOverlayElement.classList.remove('app__dialog--hide');

@@ -1,0 +1,33 @@
+{
+  "id_commande": 2,
+  "id_vehicule": 2,
+  "qrcode": "UGJANGT",
+  "date_achat": "2019-10-12",
+  "nombre_bagage": 10,
+  "nombre_animal": 0,
+  "id_acheteur": 2,
+  "passagers": [
+    {
+      "id_passager": 2,
+      "nom": "Poirier",
+      "prenom": "Guy",
+      "date_naissance": "1986-10-10",
+      "id_acheteur": 2
+    },
+    {
+      "id_passager": 3,
+      "nom": "Johnson",
+      "prenom": "Felix",
+      "date_naissance": "1999-02-04",
+      "id_acheteur": 2
+    }
+  ],
+  "vehicule": {
+    "id_vehicule": 2,
+    "type_vehicule": 2,
+    "couleur": "Vert",
+    "immatriculation": "933KC",
+    "modele": "Berline",
+    "marque": "Mercedes"
+  }
+}
