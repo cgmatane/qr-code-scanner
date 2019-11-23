@@ -112,8 +112,8 @@ window.addEventListener('DOMContentLoaded', () => {
             var alert = "<div class='alert alert-success'>" + '<strong>Billet valide</strong> Vous pouvez avancer</div>';
             if (popupInfo) {
               var commande = JSON.parse(this.responseText);
-              aAfficher += '<div>' + commande.passagers.length + ' passagers : ' + '</div>';
-              commande.passagers.forEach(function(passager) {
+              aAfficher += '<div>' + commande.relation_passagers.length + ' passagers : ' + '</div>';
+              commande.relation_passagers.forEach(function(passager) {
                 aAfficher += '<div>' + passager.nom + ' ' + passager.prenom + '</div>';
               });
               aAfficher += alert;
